@@ -10,6 +10,7 @@ import Login from '../pages/Login'
 import PlaceOrder from '../pages/PlaceOrder'
 import Orders from '../pages/Orders'
 import Verify from '../pages/Verify'
+import ProtectedRoute from './ProtectedRoute'
 
 const Routers = () => {
   return (
@@ -21,9 +22,21 @@ const Routers = () => {
       <Route path='/product/:productId' element={<Product />} />
       <Route path='/cart' element={<Cart />} />
       <Route path='/login' element={<Login />} />
-      <Route path='/place-order' element={<PlaceOrder />} />
-      <Route path='/orders' element={<Orders />} />
-      <Route path='/verify' element={<Verify />} />
+      <Route path='/place-order' element={
+        <ProtectedRoute>
+          <PlaceOrder />
+        </ProtectedRoute>
+      } />
+      <Route path='/orders' element={
+        <ProtectedRoute>
+          <Orders />
+        </ProtectedRoute>
+      } />
+      <Route path='/verify' element={
+        <ProtectedRoute>
+          <Verify />
+        </ProtectedRoute>
+      } />
     </Routes>
   );
 };
